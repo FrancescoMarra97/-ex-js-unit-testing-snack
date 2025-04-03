@@ -3,8 +3,11 @@ function getInitials(nomeCompleto) {
     return `${nome.charAt(0).toUpperCase()}${cognome.charAt(0).toUpperCase()}`
 }
 
-function createSlug(stringa) {
-    return stringa.toLowerCase().replaceAll(" ", "-")
+function createSlug(titolo) {
+    if (!titolo) {
+        throw new Error("CreateSlug vuole il titolo");
+    }
+    return titolo.toLowerCase().replaceAll(" ", "-")
 }
 
 function average(nums) {
