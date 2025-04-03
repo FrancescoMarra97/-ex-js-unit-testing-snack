@@ -1,4 +1,4 @@
-const { getInitials, createSlug, average, isPalindrome } = require("./vari_test")
+const { getInitials, createSlug, average, isPalindrome, findPostById } = require("./vari_test")
 
 // Snack 1
 test('La funzione getInitials restituisce le iniziali di un nome completo.', () => {
@@ -38,6 +38,24 @@ test('La funzione isPalindrome verifica se una stringa è un palindromo.', () =>
 
 //Snack 6 
 test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido.', () => {
-    expect(() => createSlug()).toThrow("titolo non valido")
-    expect(() => createSlug(null)).toThrow("titolo non valido")
+    expect(() => createSlug()).toThrow('titolo non valido')
+    expect(() => createSlug(null)).toThrow('titolo non valido')
+})
+
+const posts = [
+    { id: 1, title: "Introduzione a JavaScript", slug: "introduzione-a-javascript" },
+    { id: 2, title: "Guida a Node.js", slug: "guida-a-nodejs" },
+    { id: 3, title: "Testing con Jest", slug: "testing-con-jest" },
+    { id: 4, title: "Consigli per scrivere codice pulito", slug: "consigli-codice-pulito" }
+]
+
+
+
+//Snack 7 
+test('La funzione findPostById restituisce il post corretto dato l array di post e l id', () => {
+    expect(findPostById(posts, 2)).toEqual({ id: 2, title: "Guida a Node.js", slug: "guida-a-nodejs" })
+    expect(findPostById(posts, 5)).toBe(null)
+    expect(() => findPostById(posts, "ciao")).toThrow('"ciao" non è un id')
+    expect(() => findPostById([34, 67], 2)).toThrow('l array posts non è nel fomrato corretto')
+
 })
